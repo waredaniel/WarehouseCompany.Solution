@@ -49,6 +49,38 @@ namespace WarehouseCompany.Controllers
       return View(thisProduct);
     }
 
- 
+    public ActionResult Delete (int id)
+    {
+      var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      return View(thisProduct);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      _db.Products.Remove(thisProduct);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Edit(int id)
+    {
+      var thisProduct = _db.Products.FirstOrDefault(product => product.ProductId == id);
+      ViewBag.ProductId = new SelectList(_db.Suppliers, "SupplierId", "SupplierName");
+      return View(thisProduct);
+    }
+
+    [HttpPost] 
+    public ActionResult Edit (Product product, int SupplierId)
+    {
+      if (SupplierId != 0)
+      {
+        _db.ProductSupplier.Add(new ProductSupplier() { SupplierId = SupplierId, ProductId = product.ProductId });
+      }
+      _db.Entry(product).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

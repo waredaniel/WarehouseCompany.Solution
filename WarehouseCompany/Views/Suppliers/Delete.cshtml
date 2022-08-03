@@ -2,10 +2,10 @@
   Layout = "_Layout";
 }
 
-@model WarehouseCompany.Models.Product
+@model WarehouseCompany.Models.Supplier
 
 <div class="jumbotron text-center">
-  <h2>Product Details</h2>
+  <h2> Confirm Delete of this Supplier?</h2>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -36,25 +36,9 @@
     </div>
   </div>
 </nav>
-<hr>
-<h3>@Html.DisplayNameFor(model => model.ProductName): @Html.DisplayFor(model => model.ProductName)</h3>
-<h3>@Html.DisplayNameFor(model => model.ProductDescription): @Html.DisplayFor(model => model.ProductDescription)</h3>
-<h3>@Html.DisplayNameFor(model => model.ProductPrice): @Html.DisplayFor(model => model.ProductPrice)</h3>
-
-@if(@Model.JoinEntities.Count == 0)
+@Html.DisplayNameFor(model => model.SupplierName): @Html.DisplayFor(model => model.SupplierName)
+@using (Html.BeginForm())
 {
-  <p>This product currently has no suppliers</p>
+  <input type ="submit" value="Confirm Delete" />
 }
-else
-{
-  <h4> This product's suppliers:</h4>
-  <ul>
-    @foreach(var join in Model.JoinEntities)
-    {
-      <li>@join.Supplier.SupplierName</li>
-    }
-  </ul>
-}
-<p>@Html.ActionLink("Back to Products", "Index")</p>
-<p>@Html.ActionLink("Edit Product", "Edit", new { id= Model.ProductId })</p>
-<p>@Html.ActionLink("Delete Product", "Delete", new { id= Model.ProductId })</p>
+@Html.ActionLink("Back to Suppliers", "Index")

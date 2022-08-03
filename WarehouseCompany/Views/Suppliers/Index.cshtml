@@ -4,8 +4,39 @@
 
 @using WarehouseCompany.Models;
 
-<h1> Suppliers List:</h1>
-
+<div class="jumbotron text-center">
+  <h1> Suppliers List</h1>
+</div>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          @Html.ActionLink("Home", "Index", "Home", null, new { @class="nav-link" })
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Product
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("All Products", "Index", "Products", null, new { @class="dropdown-item" })</li>
+            <li>@Html.ActionLink("Add new Product", "Create", "Products", null, new { @class="dropdown-item" })</li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Supplier
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("All Suppliers", "Index", "Suppliers", null, new { @class="dropdown-item" })</li>
+            <li>@Html.ActionLink("Add new Supplier", "Create", "Suppliers", null, new { @class="dropdown-item" })</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<hr />
 @if (@Model.Count == 0)
 {
   <h3> Please add a Supplier </h3>
@@ -17,5 +48,3 @@
     <li>@Html.ActionLink($"{supplier.SupplierName}", "Details", new { id = supplier.SupplierId })</li>
   }
 </ul>
-
-<p>@Html.ActionLink("Add a new Supplier", "Create")</p>

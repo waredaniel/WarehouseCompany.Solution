@@ -7,6 +7,7 @@ namespace WarehouseCompany.Models
     public Product()
     {
       this.JoinEntities = new HashSet<ProductSupplier>();
+      this.JoinEntities2 = new HashSet<ProductOrder>();
     }
 
     public int ProductId { get; set; }
@@ -15,5 +16,6 @@ namespace WarehouseCompany.Models
     public int ProductPrice { get; set; }
 
     public virtual ICollection<ProductSupplier> JoinEntities { get; }
+    public virtual ICollection<ProductOrder> JoinEntities2 { get; }
   }
 }

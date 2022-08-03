@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarehouseCompany.Models;
 
 namespace WarehouseCompany.Migrations
 {
     [DbContext(typeof(WarehouseCompanyContext))]
-    partial class WarehouseCompanyContextModelSnapshot : ModelSnapshot
+    [Migration("20220803215701_Order")]
+    partial class Order
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

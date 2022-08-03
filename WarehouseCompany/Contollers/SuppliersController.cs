@@ -59,5 +59,18 @@ namespace WarehouseCompany.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Edit (int id)
+    {
+      var thisSupplier = _db.Suppliers.FirstOrDefault(supplier => supplier.SupplierId == id);
+      return View(thisSupplier);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Supplier supplier)
+    {
+      _db.Entry(supplier).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
