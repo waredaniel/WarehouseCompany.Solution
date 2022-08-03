@@ -2,8 +2,10 @@
   Layout = "_Layout";
 }
 
+@model WarehouseCompany.Models.Order
+
 <div class="jumbotron text-center">
-  <h1> Warehouse Database </h1>
+  <h2>Edit this Order: @Html.DisplayFor(model => model.Name)</h2>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -30,17 +32,25 @@
             <li>@Html.ActionLink("Add new Supplier", "Create", "Suppliers", null, new { @class="dropdown-item" })</li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Order
-          </a>
-          <ul class="dropdown-menu">
-            <li>@Html.ActionLink("All Orders", "Index", "Orders", null, new { @class="dropdown-item" })</li>
-            <li>@Html.ActionLink("Add new Order", "Create", "Orders", null, new { @class="dropdown-item" })</li>
-          </ul>
-        </li>
       </ul>
     </div>
   </div>
 </nav>
 <hr />
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.OrderId)
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+  @Html.LabelFor(model => model.OrderDate)
+  @Html.EditorFor(model => model.OrderDate)
+  @Html.LabelFor(model => model.OrderQuantity)
+  @Html.EditorFor(model => model.OrderQuantity)
+  @Html.LabelFor(model => model.OrderPrice)
+  @Html.EditorFor(model => model.OrderPrice)
+  @Html.LabelFor(model => model.OrderStatus)
+  @Html.EditorFor(model => model.OrderStatus)
+
+  <input type="submit" value="Save Changes" />
+}
+<p>@Html.ActionLink("Back to Order List", "Index")</p>

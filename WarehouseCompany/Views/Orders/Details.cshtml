@@ -2,8 +2,10 @@
   Layout = "_Layout";
 }
 
+@model WarehouseCompany.Models.Order
+
 <div class="jumbotron text-center">
-  <h1> Warehouse Database </h1>
+  <h3> New Order </h3>
 </div>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -44,3 +46,10 @@
   </div>
 </nav>
 <hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.OrderDate): @Html.DisplayFor(model => model.OrderDate)</h3>
+<h3>@Html.DisplayNameFor(model => model.OrderQuantity): @Html.DisplayFor(model => model.OrderQuantity)</h3>
+<h3>@Html.DisplayNameFor(model => model.OrderPrice): @Html.DisplayFor(model => model.OrderPrice)</h3>
+<h3>@Html.DisplayNameFor(model => model.OrderStatus): @Html.DisplayFor(model => model.OrderStatus)</h3>
+
+<p>@Html.ActionLink("Edit Order", "Edit", new { id= Model.OrderId })</p>
