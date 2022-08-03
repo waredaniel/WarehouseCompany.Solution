@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model WarehouseCompany.Models.Supplier
+
+<h3> Add a new Supplier </h3>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.SupplierName)
+  @Html.TextBoxFor(model => model.SupplierName)
+  @Html.LabelFor(model => model.SupplierAddress)
+  @Html.TextBoxFor(model => model.SupplierAddress)
+  @Html.LabelFor(model => model.SupplierCountry)
+  @Html.TextBoxFor(model => model.SupplierCountry)
+
+  <input type="submit" value="Add Supplier" />
+}

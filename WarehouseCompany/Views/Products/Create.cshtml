@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model WarehouseCompany.Models.Product
+
+<h3> New Product </h3>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.ProductName)
+  @Html.TextBoxFor(model => model.ProductName)
+  @Html.LabelFor(model => model.ProductDescription)
+  @Html.TextBoxFor(model => model.ProductDescription)
+  @Html.LabelFor(model => model.ProductPrice)
+  @Html.TextBoxFor(model => model.ProductPrice)
+
+  @Html.Label("Select Supplier")
+  @Html.DropDownList("SupplierId")
+  <input type="submit" value="Add Product" />
+}
+

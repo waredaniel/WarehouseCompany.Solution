@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model WarehouseCompany.Models.Supplier;
+
+<h2> Supplier Details:</h2>
+<hr>
+<h3>@Html.DisplayNameFor(model => model.SupplierName): @Html.DisplayFor(model => model.SupplierName)</h3>
+<h3>@Html.DisplayNameFor(model => model.SupplierAddress): @Html.DisplayFor(model => model.SupplierAddress)</h3>
+<h3>@Html.DisplayNameFor(model => model.SupplierCountry): @Html.DisplayFor(model => model.SupplierCountry)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p> No currently listed products</p>
+}
+else
+{
+  <h4> This Supplier's Products:</h4>
+  <ul>
+    @foreach (var join in Model.JoinEntities)
+    {
+      <li>@join.Product.ProductName</li>
+    }
+  </ul>
+}

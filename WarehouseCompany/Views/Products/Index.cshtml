@@ -1,0 +1,46 @@
+@{
+  Layout = "_Layout";
+}
+
+
+@using WarehouseCompany.Models;
+
+<div class="jumbotron text-center">
+  <h1> Products </h1>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          @Html.ActionLink("Home", "Index", "Home", null, new { @class="nav-link" })
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Product
+          </a>
+          <ul class="dropdown-menu">
+            <li>@Html.ActionLink("All Products", "Index", "Products", null, new { @class="dropdown-item" })</li>
+            <li>@Html.ActionLink("Add new Product", "Create", "Products", null, new { @class="dropdown-item" })</li>
+          </ul>
+        </li>
+
+
+        <!-- <li class="nav-item">
+          @Html.ActionLink("All Products", "Index", "Products", null, new { @class="nav-link" })
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Add new Product", "Create", "Products", null, new { @class="nav-link" })
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ul>
+  @foreach(Product product in Model)
+  {
+    <li>@Html.ActionLink($"{product.ProductName}", "Details", new { id = product.ProductId })</li>
+  }
+</ul>
