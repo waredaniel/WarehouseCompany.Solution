@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WarehouseCompany.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace WarehouseCompany.Controllers
 {
@@ -16,10 +17,24 @@ namespace WarehouseCompany.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string searchString)
     {
       ViewBag.PageTitle = "View All Orders";
-      return View(_db.Orders.ToList());
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        List<Order> model = _db.Orders
+          .Where(order => order.Name.Contains(searchString))
+          .OrderBy(order => order.Name)
+          .ToList();
+        return View(model);
+      }
+      else
+      {
+        List<Order> model = _db.Orders
+          .OrderBy(order => order.Name)
+          .ToList();
+        return View(model);
+      }
     }
 
     public ActionResult Create()
@@ -53,6 +68,7 @@ namespace WarehouseCompany.Controllers
 
     public ActionResult Edit(int id)
     {
+      ViewBag.ProductId = new SelectList(_db.Products, "ProductId", "ProductName");
       var thisOrder = _db.Orders.FirstOrDefault(order => order.OrderId == id);
       return View(thisOrder);
     }

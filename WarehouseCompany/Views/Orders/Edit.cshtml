@@ -50,6 +50,8 @@
   @Html.EditorFor(model => model.OrderPrice)
   @Html.LabelFor(model => model.OrderStatus)
   @Html.EditorFor(model => model.OrderStatus)
+  @Html.Label("Select Product", null, new { @class="col-form-label col-sm-2" })
+  @Html.DropDownList("ProductId", null, new { @class="form-control" })
 
   <input type="submit" value="Save Changes" />
 }

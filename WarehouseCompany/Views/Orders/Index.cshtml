@@ -46,6 +46,15 @@
           </ul>
         </li>
       </ul>
+      <div>
+        @using (Html.BeginForm("Index","Orders",FormMethod.Get))
+        { 
+          <div class="d-flex" role="search">
+            @Html.TextBox("SearchString", null, new { type="search", placeholder = "Search", @class="form-control me-2"}) 
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>
+        }
+      </div>
     </div>
   </div>
 </nav>

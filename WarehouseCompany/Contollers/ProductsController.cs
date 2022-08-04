@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WarehouseCompany.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace WarehouseCompany.Controllers
 {
@@ -16,9 +17,24 @@ namespace WarehouseCompany.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string searchString)
     {
-      return View(_db.Products.ToList());
+      ViewBag.PageTitle = "View All Suppliers";
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        List<Product> model = _db.Products
+          .Where(product => product.ProductName.Contains(searchString))
+          .OrderBy(product => product.ProductName)
+          .ToList();
+        return View(model);
+      }
+      else
+      {
+        List<Product> model = _db.Products
+          .OrderBy(product => product.ProductName)
+          .ToList();
+        return View(model);
+      }
     }
 
     public ActionResult Create()

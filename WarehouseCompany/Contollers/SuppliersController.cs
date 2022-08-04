@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WarehouseCompany.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace WarehouseCompany.Controllers
 {
@@ -15,11 +16,24 @@ namespace WarehouseCompany.Controllers
       _db = db;
     }
 
-    public ActionResult Index ()
+    public ActionResult Index(string searchString)
     {
-      ViewBag.PageTitle = "All suppliers";
-      List<Supplier> model = _db.Suppliers.ToList();
-      return View(model);
+      ViewBag.PageTitle = "View All Products";
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        List<Supplier> model = _db.Suppliers
+          .Where(supplier => supplier.SupplierName.Contains(searchString))
+          .OrderBy(supplier => supplier.SupplierName)
+          .ToList();
+        return View(model);
+      }
+      else
+      {
+        List<Supplier> model = _db.Suppliers
+          .OrderBy(supplier => supplier.SupplierName)
+          .ToList();
+        return View(model);
+      }
     }
 
     public ActionResult Create()

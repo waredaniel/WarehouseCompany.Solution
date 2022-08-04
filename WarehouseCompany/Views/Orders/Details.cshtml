@@ -52,4 +52,10 @@
 <h3>@Html.DisplayNameFor(model => model.OrderPrice): @Html.DisplayFor(model => model.OrderPrice)</h3>
 <h3>@Html.DisplayNameFor(model => model.OrderStatus): @Html.DisplayFor(model => model.OrderStatus)</h3>
 
+
+@foreach(var join in Model.JoinEntities2)
+{
+  <h3>@Html.Label("Ordered Product: ") @join.Product.ProductName</h3>
+}
+
 <p>@Html.ActionLink("Edit Order", "Edit", new { id= Model.OrderId })</p>
